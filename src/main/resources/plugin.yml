@@ -1,0 +1,12 @@
+name: ${project.artifactId}
+main: ${project.groupId}.${project.artifactId}
+version: ${project.version}
+api-version: 1.14
+depends: [GriefPrevention, Vault]
+commands:
+  bbb:
+    description: Buy claimblocks
+    usage: /bb (count)
+  brb:
+    description: Provide rankblocks
+    usage: /brb (user) (count)
