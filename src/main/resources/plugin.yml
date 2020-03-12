@@ -1,8 +1,8 @@
 name: ${project.artifactId}
 main: ${project.groupId}.${project.artifactId}
 version: ${project.version}
-api-version: 1.14
-depends: [GriefPrevention, Vault]
+api-version: 1.15
+depend: [GriefPrevention, LuckPerms, Vault]
 commands:
   bbb:
     description: Buy claimblocks
@@ -10,3 +10,7 @@ commands:
   brb:
     description: Provide rankblocks
     usage: /brb (user) (count)
+permissions:
+  biemblocks.buyclaimblocks:
+    description: Allows the user to buy claimblocks.
+    default: false
