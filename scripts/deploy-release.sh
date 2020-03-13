@@ -11,7 +11,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
 
   echo -e "Publishing final plugin release...\n"
 
-  rsync -r --quiet -e "ssh -p 2222 -o StrictHostKeyChecking=no" $HOME/build/internetpolice-eu/BiemBlocks/target/RandomTP-*.jar \
+  rsync -r --quiet -e "ssh -p 2222 -o StrictHostKeyChecking=no" $HOME/build/internetpolice-eu/BiemBlocks/target/BiemBlocks-*.jar \
   travis@travis.internetpolice.eu:WWW/downloads/BiemBlocks/
 
 fi
