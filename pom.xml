@@ -4,7 +4,7 @@
 
     <groupId>eu.internetpolice</groupId>
     <artifactId>BiemBlocks</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -31,9 +31,9 @@
 
         <!-- LuckPerms -->
         <dependency>
-            <groupId>me.lucko.luckperms</groupId>
-            <artifactId>luckperms-api</artifactId>
-            <version>4.4</version>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -49,7 +49,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>18.0.0</version>
+            <version>19.0.0</version>
         </dependency>
     </dependencies>
 
@@ -84,10 +84,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>11</release>
                 </configuration>
             </plugin>
         </plugins>
