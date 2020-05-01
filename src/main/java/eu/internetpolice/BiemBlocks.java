@@ -1,6 +1,7 @@
 package eu.internetpolice;
 
 import eu.internetpolice.command.BuyclaimblocksCommand;
+import eu.internetpolice.command.RankblocksCommand;
 import eu.internetpolice.hooks.GriefPreventionHook;
 import eu.internetpolice.hooks.HookManager;
 import eu.internetpolice.hooks.LuckPermsHook;
@@ -24,6 +25,7 @@ public class BiemBlocks extends JavaPlugin {
         hookManager.loadPluginHook(new VaultHook(this));
 
         getCommand("bbb").setExecutor(new BuyclaimblocksCommand(this));
+        getCommand("brb").setExecutor(new RankblocksCommand(this));
     }
 
     public double getBlockPrice() {
@@ -68,6 +70,21 @@ public class BiemBlocks extends JavaPlugin {
         player.sendMessage(ChatColor.GOLD + "You have bought " + amount + " claim blocks for $" + totalCost + ".");
     }
 
+    public void giveRankblocks(Player player, int amount) {
+        if (!getHookManager().getPluginHook("GriefPrevention").isPresent() ||
+               !getHookManager().getPluginHook("LuckPerms").isPresent()) {
+            return;
+        }
+
+        GriefPreventionHook gpHook = (GriefPreventionHook) getHookManager().getPluginHook("GriefPrevention").get();
+        LuckPermsHook lpHook = (LuckPermsHook) getHookManager().getPluginHook("LuckPerms").get();
+
+        gpHook.addClaimBlocks(player, amount);
+        lpHook.addRankBoughtCount(player, amount);
+
+        player.sendMessage(ChatColor.GOLD + "You have been given " + amount + " claimblocks.");
+    }
+
     public int getUserBuyLimit(Player player) {
         Optional<PluginHook> hook = getHookManager().getPluginHook("LuckPerms");
         if (hook.isPresent()) {
@@ -83,6 +100,16 @@ public class BiemBlocks extends JavaPlugin {
         if (hook.isPresent()) {
             LuckPermsHook lpHook = (LuckPermsHook) hook.get();
             return lpHook.getUserBoughtCount(player);
+        }
+
+        return 0;
+    }
+
+    public int getUserRankedCount(Player player) {
+        Optional<PluginHook> hook = getHookManager().getPluginHook("LuckPerms");
+        if (hook.isPresent()) {
+            LuckPermsHook lpHook = (LuckPermsHook) hook.get();
+            return lpHook.getRankBoughtCount(player);
         }
 
         return 0;
